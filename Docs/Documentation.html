@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation – Parking System & 3D Assets</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #fcfcfc;
+            color: #222222;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .main-header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eaeaea;
+            margin-bottom: 30px;
+        }
+        .main-header h1 {
+            font-weight: 600;
+            font-size: 1.8rem;
+            color: #111111;
+            letter-spacing: -0.5px;
+        }
+        .main-header p {
+            color: #666666;
+            font-size: 0.95rem;
+            margin-top: 6px;
+        }
+
+        /* Two columns - responsive */
+        .columns-wrapper {
+            display: flex;
+            gap: 30px;
+            align-items: stretch;
+        }
+        .column {
+            flex: 1;
+            min-width: 0;
+        }
+        .divider {
+            width: 1px;
+            background: #e0e0e0;
+            flex-shrink: 0;
+            margin: 10px 0;
+        }
+
+        /* Accordion - all closed by default */
+        details {
+            border-bottom: 1px solid #f0f0f0;
+        }
+        summary {
+            list-style: none;
+            padding: 14px 0;
+            cursor: pointer;
+            font-weight: 500;
+            color: #111111;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 1rem;
+            user-select: none;
+            transition: 0.15s;
+        }
+        summary:hover {
+            color: #000;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        .arrow {
+            color: #1a73e8;
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+            display: inline-block;
+            width: 16px;
+            flex-shrink: 0;
+        }
+        details[open] .arrow {
+            transform: rotate(90deg);
+        }
+        .content {
+            padding: 0 0 18px 24px;
+            color: #444444;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+        .content p {
+            margin: 8px 0;
+        }
+        .content ul {
+            margin: 6px 0;
+            padding-left: 22px;
+            list-style: none;
+        }
+        .content ul li {
+            margin: 4px 0;
+            padding-left: 18px;
+            position: relative;
+        }
+        .content ul li::before {
+            content: "-";
+            position: absolute;
+            left: 0;
+            color: #1a73e8;
+        }
+        .content strong {
+            color: #1a1a1a;
+            font-weight: 600;
+        }
+        .content code {
+            background: #f5f5f5;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            color: #222;
+            direction: ltr;
+            display: inline-block;
+            word-break: break-word;
+        }
+        .content ol {
+            margin: 6px 0 6px 20px;
+            color: #444;
+        }
+
+        /* 3D Section */
+        .section-3d {
+            margin-top: 40px;
+            border-top: 1px solid #eaeaea;
+            padding-top: 30px;
+        }
+        .section-3d .section-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #111;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .section-3d .section-title .badge {
+            background: #1a73e8;
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 2px 12px;
+            border-radius: 20px;
+            font-weight: 400;
+        }
+
+        /* Developer Footer - no contact info */
+        .developer-footer {
+            margin-top: 45px;
+            border-top: 1px solid #eaeaea;
+            padding-top: 24px;
+            color: #555555;
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+        .footer-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 20px 30px;
+        }
+        .footer-col {
+            flex: 1;
+            min-width: 150px;
+        }
+        .footer-col strong {
+            color: #111111;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .status-badge {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 2px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            color: #333;
+            margin-right: 6px;
+        }
+        .status-badge.beta {
+            background: #e8f0fe;
+            color: #1a73e8;
+        }
+        .steps-list {
+            margin-top: 4px;
+            list-style: none;
+            padding: 0;
+        }
+        .steps-list li {
+            padding: 2px 0;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .steps-list li .step-num {
+            display: inline-block;
+            width: 20px;
+            color: #1a73e8;
+            font-weight: 600;
+        }
+        .footer-bottom {
+            border-top: 1px dashed #f0f0f0;
+            margin-top: 14px;
+            padding-top: 14px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            color: #777777;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                margin: 15px auto;
+                padding: 0 12px;
+            }
+            .columns-wrapper {
+                flex-direction: column;
+            }
+            .divider {
+                width: 100%;
+                height: 1px;
+                margin: 10px 0;
+            }
+            .footer-grid {
+                flex-direction: column;
+                gap: 12px;
+            }
+            .main-header h1 {
+                font-size: 1.5rem;
+            }
+            .section-3d .section-title {
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 0 0 14px 16px;
+                font-size: 0.9rem;
+            }
+            summary {
+                font-size: 0.9rem;
+                padding: 12px 0;
+            }
+            .main-header h1 {
+                font-size: 1.3rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 4px;
+                align-items: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <h1>Integrated Project Documentation</h1>
+        <p>Parking Management System · 3D Lowpoly Asset Pack</p>
+    </header>
+
+    <!-- Two Columns -->
+    <div class="columns-wrapper">
+
+        <!-- Right Column: Functional -->
+        <div class="column">
+            <h2 style="font-size:1.2rem; font-weight:600; color:#111; margin-bottom:16px;">Functional Documentation – Parking System</h2>
+
+            <details>
+                <summary><span class="arrow">▸</span> Overview</summary>
+                <div class="content">
+                    <p>The Parking Management System is a web application that automates the booking of parking spaces in public and private facilities. It solves common problems such as double-booking, time wasted searching for a spot, and human errors in manual tracking. The system targets two main groups: <strong>customers</strong> who want to book a spot quickly, and <strong>administrators</strong> who manage the facility and need real-time visibility and control over reservations.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Core Features</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>Smart Auto-Booking:</strong> Uses an algorithm that searches for the first available spot (sorted by ID) and assigns it immediately, preventing double-booking and reducing wait time.</li>
+                        <li><strong>Admin Console:</strong> A text-based interface that displays all current reservations with driver name, phone number, license plate, assigned spot, and booking time. Allows deletion of any reservation to free up the spot.</li>
+                        <li><strong>Spot Management:</strong> When a reservation is deleted, the spot is automatically marked as available for new bookings.</li>
+                        <li><strong>Pre-configured Layout:</strong> The database comes with 40 pre-defined spots (A1–A10, B1–B10, C1–C10, D1–D10) for immediate use without complex setup.</li>
+                        <li><strong>Local SQLite Database:</strong> Stores all data persistently, ensuring information survives system restarts.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> User Benefits</summary>
+                <div class="content">
+                    <p><strong>For Customers:</strong></p>
+                    <ul>
+                        <li>Fast booking with simple steps via any device (mobile, desktop, tablet).</li>
+                        <li>Instant confirmation of the assigned spot for peace of mind before arrival.</li>
+                        <li>Transparency in knowing which spot is available without searching the lot.</li>
+                    </ul>
+                    <p><strong>For Administrators:</strong></p>
+                    <ul>
+                        <li>Reduced manual effort and elimination of errors from spreadsheets or paper tracking.</li>
+                        <li>Real-time occupancy status to make quick decisions.</li>
+                        <li>Easy spot release when cars leave, improving space utilization.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Security &amp; Compliance</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>Data Integrity:</strong> SQLite ensures reliable data storage, with easy backup via copying the database file.</li>
+                        <li><strong>Role Separation:</strong> The booking interface is completely separate from admin tools (console), so regular users cannot access delete or modify functions.</li>
+                        <li><strong>Personal Data Protection:</strong> Customer data (name, phone, plate) is handled securely and not shared with third parties.</li>
+                        <li><strong>Privacy Compliance:</strong> The system collects no sensitive data and can be run in a local offline environment, meeting the requirements of some organizations.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Deployment &amp; Accessibility</summary>
+                <div class="content">
+                    <p><strong>Requirements:</strong></p>
+                    <ul>
+                        <li>.NET 10 runtime or higher.</li>
+                        <li>SQLite (embedded, no installation needed).</li>
+                        <li>Modern browser with Blazor WebAssembly support.</li>
+                    </ul>
+                    <p><strong>Deployment Steps:</strong></p>
+                    <ul>
+                        <li>Clone the project and run <code>dotnet run</code> inside the ParkingApp folder.</li>
+                        <li>Apply migrations to create the database: <code>dotnet ef database update</code>.</li>
+                        <li>Access the web interface at <code>https://localhost:5001</code>, and the console via the AdminConsole project.</li>
+                    </ul>
+                    <p>The system is self-contained and requires no external web server or separate database server, making it ideal for small and medium businesses.</p>
+                </div>
+            </details>
+        </div>
+
+        <!-- Divider -->
+        <div class="divider"></div>
+
+        <!-- Left Column: Technical -->
+        <div class="column">
+            <h2 style="font-size:1.2rem; font-weight:600; color:#111; margin-bottom:16px;">Technical Documentation – Pivotal Code</h2>
+
+            <details>
+                <summary><span class="arrow">▸</span> Data Models: ParkingSpot &amp; Reservation</summary>
+                <div class="content">
+                    <p><strong>ParkingSpot.cs</strong> – Represents a physical parking spot.</p>
+                    <ul>
+                        <li><code>int Id</code> – Unique identifier (primary key).</li>
+                        <li><code>string SpotNumber</code> – Human-readable name like "A1", "B3".</li>
+                        <li><code>bool IsBooked</code> – Tracks whether the spot is currently occupied.</li>
+                    </ul>
+                    <p><strong>Reservation.cs</strong> – Holds all details of a booking.</p>
+                    <ul>
+                        <li><code>int Id</code> – Primary key.</li>
+                        <li><code>int ParkingSpotId</code> – Foreign key to the assigned spot.</li>
+                        <li><code>string DriverName</code>, <code>string PhoneNumber</code>, <code>string LicensePlate</code> – Customer info.</li>
+                        <li><code>int DurationInHours</code> – How long the spot is reserved.</li>
+                        <li><code>DateTime StartTime</code> – When the reservation begins (defaults to <code>DateTime.Now</code>).</li>
+                    </ul>
+                    <p>The <code>ParkingSpot</code> navigation property links each reservation to its spot.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> ParkingService – The Auto-Booking Engine</summary>
+                <div class="content">
+                    <p><strong>ParkingService.cs</strong> contains the heart of the system: the <code>AutoBookSpotAsync</code> method.</p>
+                    <p><strong>How it works:</strong></p>
+                    <ol>
+                        <li>Queries the <code>ParkingSpots</code> table for spots where <code>IsBooked == false</code>.</li>
+                        <li>Sorts them in <strong>descending order by Id</strong> (the highest ID first).</li>
+                        <li>Takes the first available spot (the "last" one in the list).</li>
+                        <li>If no spot is found, returns <code>(false, null, "No spots available")</code>.</li>
+                        <li>Otherwise, marks the spot as <code>IsBooked = true</code> and links the reservation.</li>
+                        <li>Saves both changes to the database in a single transaction.</li>
+                    </ol>
+                    <p><strong>Why descending order?</strong> This ensures that spots are filled from the highest number downwards, which can be useful for parking lot layouts (e.g., fill the furthest spots first to keep the entrance clear). The strategy is easy to change if needed.</p>
+                    <p>The method returns a tuple: <code>(bool Success, ParkingSpot? AssignedSpot, string Message)</code> so the caller knows if the booking succeeded and which spot was assigned.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> AppDbContext &amp; Migrations</summary>
+                <div class="content">
+                    <p><strong>AppDbContext</strong> inherits from <code>DbContext</code> and defines two <code>DbSet</code> properties:</p>
+                    <ul>
+                        <li><code>DbSet&lt;ParkingSpot&gt; ParkingSpots</code></li>
+                        <li><code>DbSet&lt;Reservation&gt; Reservations</code></li>
+                    </ul>
+                    <p><strong>Migrations</strong> are used to create and update the SQLite database schema. The <code>InitialCreate</code> migration:</p>
+                    <ul>
+                        <li>Creates both tables with proper foreign key constraints.</li>
+                        <li>Seeds the database with <strong>40 predefined spots</strong> (A1–A10, B1–B10, C1–C10, D1–D10) – all <code>IsBooked = false</code>.</li>
+                    </ul>
+                    <p>The second migration (<code>AddFloorsAndPhone</code>) renamed <code>CustomerName</code> to <code>PhoneNumber</code> and added <code>DriverName</code>, demonstrating how the schema evolves.</p>
+                    <p>SQLite was chosen for its simplicity – no separate server installation required.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Program.cs – Dependency Injection &amp; Pipeline</summary>
+                <div class="content">
+                    <p><strong>Service Registration:</strong></p>
+                    <ul>
+                        <li><code>builder.Services.AddDbContext&lt;AppDbContext&gt;(options =&gt; options.UseSqlite("Data Source=parking.db"))</code> – Registers the database context with a SQLite connection string.</li>
+                        <li><code>builder.Services.AddScoped&lt;ParkingService&gt;()</code> – Makes <code>ParkingService</code> available for injection into controllers or components (scoped lifetime, one instance per HTTP request).</li>
+                    </ul>
+                    <p><strong>Blazor Setup:</strong></p>
+                    <ul>
+                        <li><code>AddRazorComponents()</code> with both <code>InteractiveServerComponents</code> and <code>InteractiveWebAssemblyComponents</code> – enables a hybrid hosting model (server-side rendering + client-side WebAssembly).</li>
+                    </ul>
+                    <p><strong>Error Handling:</strong></p>
+                    <ul>
+                        <li><code>UseStatusCodePagesWithReExecute("/not-found")</code> – redirects to a custom "not found" page for HTTP errors.</li>
+                        <li><code>UseExceptionHandler("/Error")</code> in production – shows a friendly error page.</li>
+                    </ul>
+                    <p><strong>Why this matters:</strong> The registration of <code>ParkingService</code> as a scoped service ensures each user gets a fresh instance with its own database context, preventing cross-request interference.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Extra: Admin Console &amp; Data Flow</summary>
+                <div class="content">
+                    <p>The <strong>AdminConsole</strong> project (separate from the web app) uses the same <code>AppDbContext</code> and models to perform administrative tasks:</p>
+                    <ul>
+                        <li><strong>View all reservations</strong> – fetches and displays <code>Reservations</code> including the associated <code>ParkingSpot</code>.</li>
+                        <li><strong>Delete a reservation</strong> – removes the <code>Reservation</code> record and sets the linked spot's <code>IsBooked</code> back to <code>false</code>.</li>
+                    </ul>
+                    <p>This demonstrates how the same data layer can be reused across different frontends (Web and Console).</p>
+                    <p><strong>Data flow summary:</strong></p>
+                    <ol>
+                        <li>User submits a booking form → Web app creates a <code>Reservation</code> object.</li>
+                        <li><code>ParkingService.AutoBookSpotAsync</code> finds a free spot and updates the database.</li>
+                        <li>Admin opens the console → queries the same database to view or modify records.</li>
+                    </ol>
+                    <p>All changes are persisted in <code>parking.db</code> (SQLite file).</p>
+                </div>
+            </details>
+        </div>
+
+    </div>
+
+    <!-- 3D Lowpoly Section -->
+    <section class="section-3d">
+        <div class="section-title">
+            3D Lowpoly Model Pack
+            <span class="badge">Blender 5.1</span>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr; gap: 4px;">
+            <details>
+                <summary><span class="arrow">▸</span> Overview</summary>
+                <div class="content">
+                    <p>The <strong>Lowpoly Pack</strong> is a collection of low-poly 3D models designed for games, animations, and environmental scenes. The models feature a simple and stylish art style with vibrant colors, perfect for developers and designers who need ready-to-use, lightweight assets. The pack includes various natural elements (trees, grass, rocks, clouds) and extra objects, organized into collections within the Blender file for easy import and use.</p>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Core Features</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>Clear Organization:</strong> Collections include <strong>Trees</strong> (7 different shapes), <strong>Grass</strong> (3 types), <strong>Rocks</strong> (6 varied sizes and shapes), <strong>Clouds</strong> (3 clouds), plus a <strong>Boo</strong> collection with 6 additional objects (decorative or helper items).</li>
+                        <li><strong>Lightweight:</strong> All models have low polygon counts, improving performance in games and interactive applications, and reducing load times.</li>
+                        <li><strong>Ready to Use:</strong> Models come with basic materials and distinctive colors, so they can be used directly in scenes without additional tweaking.</li>
+                        <li><strong>Flexible Editing:</strong> Models are fully editable in Blender (add modifiers, change colors, add effects), allowing designers to customize them as needed.</li>
+                        <li><strong>Game Engine Compatibility:</strong> Models can be exported to common formats like FBX, OBJ, GLTF for use in Unity, Unreal Engine, or any other engine that supports these formats.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> User Benefits</summary>
+                <div class="content">
+                    <p><strong>For Designers and Artists:</strong></p>
+                    <ul>
+                        <li>Saves design time by providing ready-made models instead of building each element from scratch.</li>
+                        <li>High flexibility for editing and animation thanks to the simple model structure.</li>
+                        <li>Easy integration into various projects (natural environments, cities, fantasy scenes).</li>
+                    </ul>
+                    <p><strong>For Game Developers:</strong></p>
+                    <ul>
+                        <li>Low-poly models suitable for mobile and web games where performance matters.</li>
+                        <li>Reusability of assets across multiple levels or projects without extra cost.</li>
+                        <li>Compatibility with lighting and physics systems in popular engines after export.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Security &amp; Compliance</summary>
+                <div class="content">
+                    <ul>
+                        <li><strong>Open License:</strong> The pack is licensed under an open-source license allowing commercial and personal use, with modification and redistribution rights (check the included license file).</li>
+                        <li><strong>Malware-Free:</strong> Files are in Blender (.blend) format, safe and free from harmful code.</li>
+                        <li><strong>Version Compatibility:</strong> Created in Blender 5.1.2, but compatible with newer versions due to using basic features not tied to a specific release.</li>
+                        <li><strong>Privacy:</strong> The pack collects no user data; it is purely design assets.</li>
+                    </ul>
+                </div>
+            </details>
+
+            <details>
+                <summary><span class="arrow">▸</span> Deployment &amp; Accessibility</summary>
+                <div class="content">
+                    <p><strong>How to Import:</strong></p>
+                    <ul>
+                        <li>Open the <code>Lowpoly pack.blend</code> file in Blender (version 2.8+).</li>
+                        <li>You will find models organized in Collections in the Outliner panel on the right.</li>
+                        <li>Drag the models you need into the current scene, or use "Append" to import them into another project.</li>
+                    </ul>
+                    <p><strong>Exporting for Use Outside Blender:</strong></p>
+                    <ul>
+                        <li>Select the desired models, then go to File > Export and choose the appropriate format (FBX for Unity, GLTF for web, OBJ for other software).</li>
+                        <li>You can export an entire collection or individual models as needed.</li>
+                    </ul>
+                    <p><strong>Editing and Customization:</strong></p>
+                    <ul>
+                        <li>All models are editable in Edit Mode, and you can change colors via Materials or add modifiers like Subdivision Surface for more detail.</li>
+                    </ul>
+                    <p>The pack is suitable for both beginners and professionals, providing ready-made assets to accelerate creative workflows.</p>
+                </div>
+            </details>
+        </div>
+    </section>
+
+    <!-- Developer Footer – no contact info -->
+    <footer class="developer-footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <strong>Suhaib Raed</strong>
+                <span>Technical Consultant &amp; Solution Architect</span>
+            </div>
+
+            <div class="footer-col">
+                <strong>Project Status</strong>
+                <div>
+                    <span class="status-badge beta">Beta v0.9.0</span>
+                    <span class="status-badge">MVP</span>
+                </div>
+                <div style="margin-top:4px; color:#555;">
+                    <span>Active Development</span>
+                </div>
+                <div style="margin-top:6px;">
+                    <strong style="font-weight:500; color:#333;">Technologies Used</strong><br>
+                    .NET 10 · Blazor · SQLite · Blender 5.1
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <strong>Development Stages</strong>
+                <ul class="steps-list">
+                    <li><span class="step-num">-</span> Step 1: Planning &amp; DB Design (Completed)</li>
+                    <li><span class="step-num">-</span> Step 2: Auto-booking Logic &amp; UI (In Progress)</li>
+                    <li><span class="step-num">-</span> Step 3: Admin Console &amp; Integration Tests (In Progress)</li>
+                </ul>
+                <div style="margin-top:6px; font-size:0.85rem; color:#777;">
+                    This project is currently in active development as an MVP and open beta.
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>&copy; 2026 Suhaib Raed · All rights reserved.</span>
+            <span>Last updated: July 2026</span>
+            <span>License: MIT (Open Source)</span>
+        </div>
+    </footer>
+
+</body>
+</html>
